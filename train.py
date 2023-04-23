@@ -1,25 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-@Auth ： 思绪无限
-博客园、知乎：思绪无限
-Bilibili：思绪亦无限
-公众号：AI技术研究与分享
-代码地址见以下博客中给出:
-https://www.cnblogs.com/sixuwuxian/
-https://www.zhihu.com/people/sixuwuxian
 
-@IDE ：PyCharm
-运行本项目需要python3.8及以下依赖库（完整库见requirements.txt）：
-    opencv-python==4.5.5.64
-    tensorflow==2.9.1
-    PyQt5==5.15.6
-    scikit-image==0.19.3
-    torch==1.8.0
-    keras==2.9.0
-    Pillow==9.0.1
-    scipy==1.8.0
-点击运行主程序runMain.py，程序所在文件夹路径中请勿出现中文
-"""
 import argparse
 import logging
 import os
@@ -402,12 +382,12 @@ def train(hyp, opt, device, tb_writer=None):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--weights', type=str, default='yolov5s.pt', help='initial weights path')
-    parser.add_argument('--cfg', type=str, default='models/yolov5s.yaml', help='model.yaml path')
-    parser.add_argument('--data', type=str, default='/PersonCar/personcar.yaml', help='data.yaml path')
-    parser.add_argument('--hyp', type=str, default='data/hyp.scratch.yaml', help='hyperparameters path')
-    parser.add_argument('--epochs', type=int, default=300)
-    parser.add_argument('--batch-size', type=int, default=2, help='total batch size for all GPUs')
+    parser.add_argument('--weights', type=str, default='./PersonCarDetection/yolov5s.pt', help='initial weights path')
+    parser.add_argument('--cfg', type=str, default='./PersonCarDetection/models/yolov5s.yaml', help='model.yaml path')
+    parser.add_argument('--data', type=str, default='./PersonCarDetection/PersonCar/personcar.yaml', help='data.yaml path')
+    parser.add_argument('--hyp', type=str, default='./PersonCarDetection/data/hyp.scratch.yaml', help='hyperparameters path')
+    parser.add_argument('--epochs', type=int, default=100)
+    parser.add_argument('--batch-size', type=int, default=8, help='total batch size for all GPUs')
     parser.add_argument('--img-size', nargs='+', type=int, default=[640, 640], help='[train, test] image sizes')
     parser.add_argument('--rect', action='store_true', help='rectangular training')
     parser.add_argument('--resume', nargs='?', const=True, default=False, help='resume most recent training')
@@ -420,7 +400,7 @@ if __name__ == '__main__':
     parser.add_argument('--image-weights', action='store_true', help='use weighted image selection for training')
     parser.add_argument('--name', default='', help='renames experiment folder exp{N} to exp{N}_{name} if supplied')
     # 设置训练是否采用GPU，若是设置为0
-    parser.add_argument('--device', default='cpu', help='cuda device, i.e. 0 or 0,1,2,3 or cpu')
+    parser.add_argument('--device', default='0', help='cuda device, i.e. 0 or 0,1,2,3 or cpu')
     parser.add_argument('--multi-scale', action='store_true', help='vary img-size +/- 50%%')
     parser.add_argument('--single-cls', action='store_true', help='train as single-class dataset')
     parser.add_argument('--adam', action='store_true', help='use torch.optim.Adam() optimizer')
