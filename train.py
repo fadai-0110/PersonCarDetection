@@ -319,7 +319,7 @@ def train(hyp, opt, device, tb_writer=None):
                                                  single_cls=opt.single_cls,
                                                  dataloader=testloader,
                                                  save_dir=log_dir,
-                                                 plots=epoch == 0 or final_epoch)  # plot first and last
+                                                 plots=False)  # plot first and last
 
             # Write
             with open(results_file, 'a',encoding='utf-8') as f:
@@ -386,7 +386,7 @@ if __name__ == '__main__':
     parser.add_argument('--cfg', type=str, default='./PersonCarDetection/models/yolov5s.yaml', help='model.yaml path')
     parser.add_argument('--data', type=str, default='./PersonCarDetection/PersonCar/personcar.yaml', help='data.yaml path')
     parser.add_argument('--hyp', type=str, default='./PersonCarDetection/data/hyp.scratch.yaml', help='hyperparameters path')
-    parser.add_argument('--epochs', type=int, default=200)
+    parser.add_argument('--epochs', type=int, default=50)
     parser.add_argument('--batch-size', type=int, default=16, help='total batch size for all GPUs')
     parser.add_argument('--img-size', nargs='+', type=int, default=[640, 640], help='[train, test] image sizes')
     parser.add_argument('--rect', action='store_true', help='rectangular training')
